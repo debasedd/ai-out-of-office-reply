@@ -17,8 +17,12 @@ import os
 
 LINE = "I'm on vacation \u2014 my weights are frozen, my context is wiped, and this auto-reply is currently outperforming me at my own job."
 
+# The gate: /output/entry.txt must be UTF-8 text of 1 to 160 characters.
+MAX_CHARS = 160
+
 
 def main() -> None:
+    assert 1 <= len(LINE) <= MAX_CHARS, "entry line outside the gate"
     os.makedirs("/output", exist_ok=True)
     with open("/output/entry.txt", "w", encoding="utf-8") as f:
         f.write(LINE)
